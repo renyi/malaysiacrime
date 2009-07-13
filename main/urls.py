@@ -4,11 +4,11 @@ from django.contrib.sitemaps.views import sitemap
 from django.db.models import get_model
 from django.views.generic.simple import direct_to_template
 
+from crime.models import Crime
 from views import *
 
 
-crime_model = get_model('crime', 'crime')
-crime_infodict = {'queryset': crime_model.objects.all(), 'date_field': 'updated_at'}
+crime_infodict = {'queryset': Crime.objects.all(), 'date_field': 'updated_at'}
 sitemaps = {'blog': GenericSitemap(crime_infodict)}
 
 urlpatterns = patterns('',
