@@ -21,6 +21,9 @@ class LatestEntries(Feed):
     def item_author_name(self, item):
         return item.author
 
+    def item_categories(self, item):
+        return (item.icon,)
+
 class CommentedEntries(Feed):
     title = "Malaysia Crime Recent Commented Reports"
     link = "/recent/commented/"
@@ -39,6 +42,9 @@ class CommentedEntries(Feed):
     def item_author_name(self, item):
         return item.author
 
+    def item_categories(self, item):
+        return (item.icon,)
+
     def item_geometry(self, item):
         return (item.lng, item.lat)
 
@@ -55,6 +61,9 @@ class UpdatedEntries(Feed):
 
     def item_author_name(self, item):
         return item.author
+
+    def item_categories(self, item):
+        return (item.icon,)
 
     def item_geometry(self, item):
         return (item.lng, item.lat)
