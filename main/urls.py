@@ -1,7 +1,6 @@
 from django.conf.urls.defaults import *
 from django.contrib.sitemaps import GenericSitemap
 from django.contrib.sitemaps.views import sitemap
-from django.db.models import get_model
 from django.views.generic.simple import direct_to_template
 
 from crime.models import Crime
