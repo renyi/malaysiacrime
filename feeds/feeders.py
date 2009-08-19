@@ -15,6 +15,12 @@ class LatestEntries(Feed):
     def item_geometry(self, item):
         return (item.lat, item.lng)
 
+    def item_pubdate(self, item):
+        return item.updated_at
+
+    def item_author_name(self, item):
+        return item.author
+
 class CommentedEntries(Feed):
     title = "Malaysia Crime Recent Commented Reports"
     link = "/recent/commented/"
@@ -27,6 +33,12 @@ class CommentedEntries(Feed):
         crimes = [crime_dict[id] for id in ids]
         return crimes
 
+    def item_pubdate(self, item):
+        return item.updated_at
+
+    def item_author_name(self, item):
+        return item.author
+
     def item_geometry(self, item):
         return (item.lat, item.lng)
 
@@ -37,6 +49,12 @@ class UpdatedEntries(Feed):
 
     def items(self):
         return Crime.objects.order_by('-updated_at')[:10]
+
+    def item_pubdate(self, item):
+        return item.updated_at
+
+    def item_author_name(self, item):
+        return item.author
 
     def item_geometry(self, item):
         return (item.lat, item.lng)
