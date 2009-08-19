@@ -13,7 +13,7 @@ class LatestEntries(Feed):
         return Crime.objects.order_by('-created_at')[:50]
 
     def item_geometry(self, item):
-        return (item.lat, item.lng)
+        return (item.lng, item.lat)
 
     def item_pubdate(self, item):
         return item.updated_at
@@ -40,7 +40,7 @@ class CommentedEntries(Feed):
         return item.author
 
     def item_geometry(self, item):
-        return (item.lat, item.lng)
+        return (item.lng, item.lat)
 
 class UpdatedEntries(Feed):
     title = "Malaysia Crime Recent Updated Reports"
@@ -57,4 +57,4 @@ class UpdatedEntries(Feed):
         return item.author
 
     def item_geometry(self, item):
-        return (item.lat, item.lng)
+        return (item.lng, item.lat)
