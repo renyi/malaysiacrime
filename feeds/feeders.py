@@ -21,7 +21,7 @@ class CommentedEntries(Feed):
     description = "Updates on recent commented entries in www.malaysiacrime.com."
 
     def items(self):
-        ids = Comment.objects.all().values_list('object_pk', flat=True).order_by('-submit_date')[:500]
+        ids = Comment.objects.all().values_list('object_pk', flat=True).order_by('-submit_date')[:10]
         ids = reduce(lambda l, x: int(x) not in l and l.append(int(x)) or l, ids, [])
         crime_dict = Crime.objects.in_bulk(ids[:10])
         crimes = [crime_dict[id] for id in ids]
