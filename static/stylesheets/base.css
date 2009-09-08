@@ -42,9 +42,9 @@ body {
 }
 
 #nav ul li a {
-	color: #F9F9F9;  
-	text-decoration: none; 
-	height: 40px; 
+	color: #F9F9F9;
+	text-decoration: none;
+	height: 40px;
 	line-height: 40px;
 	float: left;
 	display: block;
@@ -55,15 +55,15 @@ body {
 
 #nav ul li a span {
 	height: 40px;
-	display: block; 
+	display: block;
 	padding-left: 13px;
 	cursor: pointer;
 }
 
 #nav ul li a:hover {
-	color: #F9F9F9;  
-	text-decoration: none; 
-	height: 40px; 
+	color: #F9F9F9;
+	text-decoration: none;
+	height: 40px;
 	line-height: 40px;
 	display: block;
 	background: url(../images/btn-R-hover.gif) right top no-repeat;
@@ -73,17 +73,17 @@ body {
 }
 
 #nav ul li a:hover span {
-	background:url(../images/btn-L-hover.gif) left top no-repeat;  
-	height: 40px; 
-	display: block; 
+	background:url(../images/btn-L-hover.gif) left top no-repeat;
+	height: 40px;
+	display: block;
 	padding-left: 13px;
 	cursor: pointer;
 }
 
 #nav ul li a.active {
-	color: #F9F9F9;  
-	text-decoration: none; 
-	height: 40px; 
+	color: #F9F9F9;
+	text-decoration: none;
+	height: 40px;
 	line-height: 40px;
 	float: left;
 	display: block;
@@ -94,9 +94,9 @@ body {
 }
 
 #nav ul li a.active span {
-	background:url(../images/btn-L.gif) left top no-repeat;  
+	background:url(../images/btn-L.gif) left top no-repeat;
 	height: 40px;
-	display: block; 
+	display: block;
 	padding-left: 13px;
 	cursor: pointer;
 }
@@ -224,7 +224,7 @@ body {
     text-align: left;
     padding-top: 23px;
     margin: 0px 0px 20px 0px;
-} 
+}
 .headlineinfo { color: #00F; font-size: 18px; }
 .sublinelinfo { color: #008080; font-size: 8px; }
 .headlinelist h2 {
@@ -232,13 +232,18 @@ body {
     font-size: 20px;
     margin: 0px 0px;
 }
-.headlinelist a { text-decoration: none; }
+/*.headlinelist a { text-decoration: none; }
 .headlinelist a:hover { color: #00F; text-decoration: underline; }
-.sublinelist { padding-bottom: 15px; }
-.sublinelist { color: #555; }
-.sublinelist span { color: #555; font-weight: bold; }
-.sublinelist .location { color: #408000; font-weight: bold; }
-
+*/
+.linelist h2 {
+    color: #00F;
+    font-size: 20px;
+    margin: 0px 0px;
+}
+.linelist h2 a { text-decoration: none; }
+.linelist h2 a:hover { color: #00F; text-decoration: underline; }
+.linelist { color: #555; }
+.linelist em { color: #408000; font-weight: bold; font-style: normal; }
 
 #map_index { width: 950px; height:500px; margin-top: 10px; margin-bottom: 30px; border: 1px solid #CCC; }
 

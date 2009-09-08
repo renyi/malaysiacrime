@@ -3,7 +3,7 @@
 
 {% block meta %}
     <meta name="description" content="Malaysia Crime News on Google Map">
-    <link rel="alternate" type="application/rss+xml" href="http://feeds.feedburner.com/malaysiacrime/latest"/>	
+    <link rel="alternate" type="application/rss+xml" href="http://feeds.feedburner.com/malaysiacrime/latest"/>
 {% endblock %}
 
 {% block map_script %}
@@ -19,6 +19,7 @@
             if (GBrowserIsCompatible()) {
                 map = new GMap2(document.getElementById("map_index"));
                 map.setCenter(new GLatLng(4.0, 102.2), 7);
+                // map.setCenter(new GLatLng(3.1, 101.7), 11);
                 map.setUIToDefault();
                 map.disableScrollWheelZoom();
                 window.setTimeout(setupMarkers, 0);
@@ -89,16 +90,18 @@
         </a>
     </div>
 
+    <div class="span-24 last">
     {% for crime in crimes %}
         {% get_comment_count for crime as comment_count %}
-        <div class="headlinelist span-24 last"><h2><a href="{{ crime.get_absolute_url }}">{{ crime.headline }}</a></h2></div>
-        <div class="sublinelist span-24 last">
-            <span>{{ crime.date|timesince:now }}</span> ago at
-            <span class="location">{{ crime.location }}</span>
-            reported by <span>{{ crime.author }}</span>
+        <span class="linelist">
+            <h2><a href="{{ crime.get_absolute_url }}">{{ crime.headline }}</a></h2>
+            <strong>{{ crime.date|timesince:now }}</strong> ago at
+            <em>{{ crime.location }}</em>
+            reported by <strong>{{ crime.author }}</strong>
             {% if comment_count %}
                 // {{ comment_count }} comment{{ comment_count|pluralize }}
             {% endif %}
-        </div>
+        </span><br/><br/>
     {% endfor %}
+    </div>
 {% endblock %}
