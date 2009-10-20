@@ -71,22 +71,19 @@
     </div>
     <div id="map_index" class="span-24 last"></div>
 
-    {# <div class="span-24 last"> #}
-    {#     <img src="{{ MEDIA_URL }}images/amax.png"> #}
-    {#     <img src="{{ MEDIA_URL }}images/amax.png"> #}
-    {#     <img src="{{ MEDIA_URL }}images/amax.png"> #}
-    {#     <script type="text/javascript"><!-- #}
-    {#     google_ad_client = "pub-4395278747027765"; #}
-    {#     /* malaysiacrime index */ #}
-    {#     google_ad_slot = "8210136586"; #}
-    {#     google_ad_width = 728; #}
-    {#     google_ad_height = 90; #}
-    {#     //--> #}
-    {#     </script> #}
-    {#     <script type="text/javascript" #}
-    {#     src="http://pagead2.googlesyndication.com/pagead/show_ads.js"> #}
-    {#     </script> #}
-    {# </div> #}
+    <div class="span-24 last">
+        <script type="text/javascript"><!--
+        google_ad_client = "pub-4395278747027765";
+        /* malaysiacrime index */
+        google_ad_slot = "8210136586";
+        google_ad_width = 728;
+        google_ad_height = 90;
+        //-->
+        </script>
+        <script type="text/javascript"
+        src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+        </script>
+    </div>
     {# <div class="span-5 last"> #}
     {#     <a href="http://feeds.feedburner.com/malaysiacrime/latest"> #}
     {#         <img src="{{ MEDIA_URL }}images/rss.png" alt="Malaysia Crime Latest Reports RSS" title="Malaysia Crime Latest Reports RSS"/> #}
@@ -107,7 +104,7 @@
         </span><br/><br/>
     {% endfor %}
     </div>
-    <div class="span-7 last">
-        <img src="{{ MEDIA_URL }}images/amax.png">
-    </div>
+    {# <div class="span-7 last"> #}
+    {#     <img src="{{ MEDIA_URL }}images/amax.png"> #}
+    {# </div> #}
 {% endblock %}
