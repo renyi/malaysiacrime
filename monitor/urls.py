@@ -6,11 +6,10 @@ from views import *
 
 urlpatterns = patterns('',
     url(r'^subscribe/$', subscribe, name='monitor-subscribe'),
-    url(r'^subscribe/done/(?P<uuid>[\w\d]{32})/$', subscribe_done, name='monitor-subscribe-done'),
-    url(r'^subscribe/confirm/(?P<uuid>[\w\d]{32})/$', subscribe_confirm, name='monitor-subscribe-confirm'),
+    url(r'^subscribe/done/$', direct_to_template, {'template': 'monitor/subscribe_done.html'}, name='monitor-subscribe-done'),
 
-    url(r'^unsubscribe/done/(?P<uuid>[\w\d]{32})/$', unsubscribe_done, name='monitor-unsubscribe-done'),
-    url(r'^unsubscribe/confirm/(?P<uuid>[\w\d]{32})/$', unsubscribe_confirm, name='monitor-unsubscribe-confirm'),
+    url(r'^unsubscribe/(?P<uuid>[\w\d]{32})/$', unsubscribe, name='monitor-unsubscribe'),
+    url(r'^unsubscribe/done/$', direct_to_template, {'template': 'monitor/unsubscribe_done.html'}, name='monitor-unsubscribe-done'),
 
-    url(r'^area/(?P<uuid>[\w\d]{32})/$', area, name='monitor-area'),
+    url(r'^info/(?P<uuid>[\w\d]{32})/$', information, name='monitor-info'),
 )

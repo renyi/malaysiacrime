@@ -9,4 +9,4 @@ class SubscribeForm(forms.ModelForm):
     """
     class Meta(object):
         model = Moniton
-        exclude = ['registered', 'add_uuid', 'del_uuid', 'add_date', 'del_date', 'created_at', 'updated_at']
+        exclude = ['registered', 'uuid', 'created_at', 'updated_at']

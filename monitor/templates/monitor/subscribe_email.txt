@@ -1,12 +1,13 @@
-Thank you for subscribing to Malaysia Crime Monitor service. Click the link below to activate your subscription.
+Thank you for subscribing to Malaysia Crime Monitor service.
 
-http://www.malaysiacrime.com{% url monitor-subscribe-confirm add_uuid %}
+You can view your subscription information using the link below:
+http://www.malaysiacrime.com{% url monitor-info uuid %}
 
+You can, at anytime, unsubscribe using the link below:
+http://www.malaysiacrime.com{%url monitor-unsubscribe uuid %}
 
 cheers,
 Malaysia Crime
 
 http://www.malaysiacrime.com
-
-
-* If you have not subscribe to Malaysia Crime Monitor service, please ignore this email.
+http://blog.malaysiacrime.com
