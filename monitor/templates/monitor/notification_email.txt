@@ -12,11 +12,13 @@ cheers,
 Malaysia Crime
 
 http://www.malaysiacrime.com
+http://blog.malaysiacrime.com
 
 
 * You are receiving this email because you have subscribed to Malaysia Crime Monitor service.
 
-* You can review your monitored area at http://www.malaysiacrime.com{% url monitor-area moniton.add_uuid %}
+You can view your subscription information using the link below:
+http://www.malaysiacrime.com{% url monitor-info uuid %}
 
-* If you wish to unsubscribe to Malaysia Crime Monitor service, please visit this link http://www.malaysiacrime.com{% url monitor-unsubscribe-done moniton.del_uuid %}
-
+You can, at anytime, unsubscribe using the link below:
+http://www.malaysiacrime.com{%url monitor-unsubscribe uuid %}
