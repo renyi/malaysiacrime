@@ -13,7 +13,7 @@ class MonitonTestCase(TestCase):
     Test operations for crime areas monitoring.
     """
     urls = 'monitor.urls'
-    fixtures = ['monitor/fixtures/monitons.json']
+    fixtures = ['monitor/fixtures/monitons.json', 'monitor/fixtures/crimes.json']
 
     def setUp(self):
         pass
@@ -31,10 +31,10 @@ class MonitonTestCase(TestCase):
         """
         inputs = {
             'email': 'kegan@kegan.info',
-            'north': 1.1234,
-            'east': 1.1234,
-            'south': 1.1234,
-            'west': 1.1234,
+            'top': 1.1234,
+            'right': 1.1234,
+            'bottom': 1.1234,
+            'left': 1.1234,
             'zoom': 9,
         }
         response = self.client.post('/subscribe/', inputs)
@@ -50,10 +50,10 @@ class MonitonTestCase(TestCase):
         """
         inputs = {
             'email': 'xxx',
-            'north': 1.1234,
-            'east': 1.1234,
-            'south': 1.1234,
-            'west': 1.1234,
+            'top': 1.1234,
+            'right': 1.1234,
+            'bottom': 1.1234,
+            'left': 1.1234,
             'zoom': 9,
         }
         response = self.client.post('/subscribe/', inputs, follow=True)
