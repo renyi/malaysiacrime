@@ -25,11 +25,13 @@ def subscribe(request, form_class=SubscribeForm, template_name='monitor/subscrib
             moniton.save()
 
             # Send notification email.
-            # TODO: handle exception.
-            send_mail(
-                'Malaysia Crime Monitor subscription',
-                get_template('monitor/subscribe_email.txt').render(Context({'uuid': moniton.uuid})),
-                'dontreply@malaysiacrime.com', [moniton.email])
+            try:
+                send_mail(
+                    'Malaysia Crime Monitor subscription',
+                    get_template('monitor/subscribe_email.txt').render(Context({'uuid': moniton.uuid})),
+                    'noreply@malaysiacrime.com', [moniton.email])
+            except smtplib.SMTPException, e:
+                pass # Email sending is unreliable service anyway. So don't bother handling it.
 
             return redirect('monitor-subscribe-done')
     elif request.method == 'GET':
