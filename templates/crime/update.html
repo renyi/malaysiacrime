@@ -75,7 +75,7 @@
 
 {% block content %}
     <div class="title span-24 last"><h1>Update Crime Report</h1></div>
-    <form action="." method="post">
+    <form action="." method="post">{% csrf_token %}
         <div class="label span-4">Headline :</div>
         <div class="field span-20 last">
             {% if form.headline.errors %}<span class="errors">{{ form.headline.errors|join:" // " }}</span><br />{% endif %}

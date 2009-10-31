@@ -13,7 +13,7 @@
     </div>
 
     <hr />
-    <form action="{% comment_form_target %}" method="post">
+    <form action="{% comment_form_target %}" method="post">{% csrf_token %}
         <div class="label span-4">Your Name:</div>
         <div class="field span-20 last">
             {% if form.name.errors %}<span class="errors">{{ form.name.errors|join:" // " }}</span><br />{% endif %}

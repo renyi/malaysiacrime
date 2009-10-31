@@ -68,7 +68,7 @@
 
     <hr />
     {% get_comment_form for crime as form %}
-    <form action="{% comment_form_target %}" method="post">
+    <form action="{% comment_form_target %}" method="post">{% csrf_token %}
         <div class="label span-4">Your Name:</div>
         <div class="field span-20 last">
             {{ form.name }}&nbsp;&nbsp;&nbsp;<em>Required.</em>
