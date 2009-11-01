@@ -5,6 +5,8 @@ class Moniton(models.Model):
     A monitoring unit. Consist of the monitored area and email.
     """
     email      = models.EmailField()
+    lat        = models.FloatField()
+    lng        = models.FloatField()
     top        = models.FloatField()
     right      = models.FloatField()
     bottom     = models.FloatField()

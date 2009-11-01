@@ -31,6 +31,8 @@ class MonitonTestCase(TestCase):
         """
         inputs = {
             'email': 'kegan@kegan.info',
+            'lat': 1.1234,
+            'lng': 1.1234,
             'top': 1.1234,
             'right': 1.1234,
             'bottom': 1.1234,
