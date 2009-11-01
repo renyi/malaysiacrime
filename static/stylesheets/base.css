@@ -195,6 +195,19 @@ body {
     display: block;
 }
 
+/* Monitor
+----------------------------------------------- */
+.subtitle p {
+    color: #666;
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+.subtitle p strong {
+    color: #8000FF;
+}
+
+
 /* Main Index
 ----------------------------------------------- */
 .stats {

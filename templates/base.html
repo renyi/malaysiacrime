@@ -21,8 +21,8 @@
         <ul>
             {% block tab0 %}<li><a href="{% url main-index %}"><span>Home</span></a></li>{% endblock %}
   			{% block tab1 %}<li><a href="{% url main-recent-commented %}"><span>Recent Commented</span></a></li>{% endblock %}
-  			{% block tab2 %}<li><a href="{% url main-recent-updated %}"><span>Recent Updated</span></a></li>{% endblock %}
-            {# {% block tab3 %}<li><a href="#"><span>Monitor</span></a></li>{% endblock %} #}
+            {% block tab2 %}<li><a href="{% url main-recent-updated %}"><span>Recent Updated</span></a></li>{% endblock %}
+            {# {% block tab3 %}<li><a href="{% url monitor-subscribe %}"><span>Monitor</span></a></li>{% endblock %} #}
 			{% block tab4 %}<li><a href="{% url main-search %}"><span>Search</span></a></li>{% endblock %}
             <li><a href="http://blog.malaysiacrime.com"><span>Blog</span></a></li>
 			{% block tab5 %}<li><a href="{% url crime-create %}"><span>Report a Crime</span></a></li>{% endblock %}

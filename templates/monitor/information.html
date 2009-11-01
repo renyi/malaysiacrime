@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block map_script %}
+    <script src="{% url main-icons-js %}" type="text/javascript"></script>
+    <script type="text/javascript">
+        var map = null;
+
+        // ----- setup map
+        function initialize() {
+            if (GBrowserIsCompatible()) {
+                map = new GMap2(document.getElementById("map_create"));
+                map.setCenter(new GLatLng({{ moniton.lat }}, {{ moniton.lng }}), {{ moniton.zoom }});
+                map.setUIToDefault();
+                map.disableScrollWheelZoom();
+                map.disableDragging();
+                map.disableDoubleClickZoom();
+            }
+        }
+
+    </script>
+{% endblock %}
+
+{% block title %}Monitor Service{% endblock %}
+
+{% block content %}
+    <div class="title span-24 last"><h1>Check Your Monitor Subscription</h1></div>
+
+    <div class="label span-4">Area Monitored :</div>
+    <div id="map_create" class="span-20 last"></div>
+
+    <div class="label span-4">Email :</div>
+    <div class="field span-20 last">{{ moniton.email }}</div>
+{% endblock %}
