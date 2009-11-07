@@ -14,7 +14,7 @@ def index(request, template_name='main/index.html'):
     Index page.
     """
     if request.method == 'GET':
-        crimes = Crime.objects.all().order_by('-date')[:200]
+        crimes = Crime.objects.all().order_by('-created_at')[:500]
     else:
         return HttpResponseRedirect(request.path)
 
