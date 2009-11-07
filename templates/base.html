@@ -2,11 +2,11 @@
 
 <html lang="en">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<meta name="verify-v1" content="9tSmkqhEItR2vb4NQ9111/akEBcEgiodn23Zbn8fLI0=" />
-	{% block meta %}{% endblock %}
-	<title>{% block title %}{% endblock %}</title>
-	<link href="{{ MEDIA_URL }}stylesheets/base.css" rel="stylesheet" type="text/css" media="screen, projection"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="verify-v1" content="9tSmkqhEItR2vb4NQ9111/akEBcEgiodn23Zbn8fLI0=" />
+    {% block meta %}{% endblock %}
+    <title>{% block title %}{% endblock %}</title>
+    <link href="{{ MEDIA_URL }}stylesheets/base.css" rel="stylesheet" type="text/css" media="screen, projection"/>
     <!--[if IE]><link href="/stylesheets/blueprint/ie.css" rel="stylesheet" type="text/css" media="screen, projection"/><![endif]-->
     <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAnJLlw5vKfNQWDanaSWeKqRTZlE7kmkEf407ZrC6woqvldhRE3hQPc-s73V-l62omjS2VoIkPROnnog&amp;sensor=false" type="text/javascript"></script>
     {% block map_script %}{% endblock %}
@@ -17,16 +17,16 @@
     <div class="header span-4">
         <h1><a href="/"><img src="{{ MEDIA_URL }}images/logo.gif" alt="Malaysia Crime Logo" title="Malaysia Crime"/></a></h1>
     </div>
-	<div class="span-20 last" id="nav">
+    <div class="span-20 last" id="nav">
         <ul>
             {% block tab0 %}<li><a href="{% url main-index %}"><span>Home</span></a></li>{% endblock %}
-  			{% block tab1 %}<li><a href="{% url main-recent-commented %}"><span>Recent Commented</span></a></li>{% endblock %}
+            {% block tab1 %}<li><a href="{% url main-recent-commented %}"><span>Recent Commented</span></a></li>{% endblock %}
             {# {% block tab2 %}<li><a href="{% url main-recent-updated %}"><span>Recent Updated</span></a></li>{% endblock %} #}
             {% block tab3 %}<li><a href="{% url monitor-subscribe %}"><span>Monitor</span></a></li>{% endblock %}
-			{% block tab4 %}<li><a href="{% url main-search %}"><span>Search</span></a></li>{% endblock %}
+            {% block tab4 %}<li><a href="{% url main-search %}"><span>Search</span></a></li>{% endblock %}
             <li><a href="http://blog.malaysiacrime.com"><span>Blog</span></a></li>
-			{% block tab5 %}<li><a href="{% url crime-create %}"><span>Report a Crime</span></a></li>{% endblock %}
-       	</ul>
+            {% block tab5 %}<li><a href="{% url crime-create %}"><span>Report a Crime</span></a></li>{% endblock %}
+        </ul>
     </div>
 <div class="clear"></div>
 {% endblock %}
