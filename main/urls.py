@@ -15,7 +15,6 @@ urlpatterns = patterns('',
     url(r'^recent/updated/$', recent_updated, name='main-recent-updated'),
     url(r'^recent/commented/$', recent_commented, name='main-recent-commented'),
     url(r'^search/$', direct_to_template, {'template': 'main/search.html'}, name='main-search'),
-    url(r'^about/$', direct_to_template, {'template': 'main/about.html'}, name='main-about'),
 
     url(r'^icons.js$', direct_to_template, {'template': 'main/icons.js', 'mimetype': 'text/javascript'}, name='main-icons-js'),
     url(r'^robots.txt$', direct_to_template, {'template': 'main/robots.txt', 'mimetype': 'text/plain'}),
