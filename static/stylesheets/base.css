@@ -240,17 +240,10 @@ body {
 }
 .headlineinfo { color: #00F; font-size: 18px; }
 .sublinelinfo { color: #008080; font-size: 8px; }
-.headlinelist h2 {
-    color: #00F;
-    font-size: 20px;
-    margin: 0px 0px;
-}
-/*.headlinelist a { text-decoration: none; }
-.headlinelist a:hover { color: #00F; text-decoration: underline; }
-*/
+
 .linelist h2 {
     color: #00F;
-    font-size: 20px;
+    font-size: 17px;
     margin: 0px 0px;
 }
 .linelist h2 a { text-decoration: none; }
