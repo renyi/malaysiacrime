@@ -62,22 +62,16 @@
 {% block tab0 %}<li><a class="active"><span>Home</span></a></li>{% endblock %}
 
 {% block content %}
-    <div class="title span-18">
+    <div class="title span-14">
         <h2>Recent Reported Malaysia Crimes</h2>
     </div>
 
-    <div class="stats span-6 last">
+    <div class="stats span-10 last">
         Showing <strong>{{ crimes.count }}</strong> of <strong>{{ crime_total }}</strong> Crime Reports
     </div>
     <div id="map_index" class="span-24 last"></div>
 
-    {# <div class="span-5 last"> #}
-    {#     <a href="http://feeds.feedburner.com/malaysiacrime/latest"> #}
-    {#         <img src="{{ MEDIA_URL }}images/rss.png" alt="Malaysia Crime Latest Reports RSS" title="Malaysia Crime Latest Reports RSS"/> #}
-    {#     </a> #}
-    {# </div> #}
-
-    <div class="span-17">
+    <div class="span-19">
     {% for crime in crimes %}
         {% get_comment_count for crime as comment_count %}
         <span class="linelist">
@@ -88,10 +82,14 @@
             {% if comment_count %}
                 // {{ comment_count }} comment{{ comment_count|pluralize }}
             {% endif %}
-        </span><br/><br/>
+        </span><br /><br />
     {% endfor %}
     </div>
-    {# <div class="span-7 last"> #}
-    {#     <img src="{{ MEDIA_URL }}images/amax.png"> #}
-    {# </div> #}
+
+    <div class="span-5 last" style="text-align: center">
+        <a href="http://www.apptivitylab.com/released-apps/malaysia-crime/">
+            <img src="{{ MEDIA_URL }}images/iphone.jpg" alt="Malaysia Crime iPhone app" title="Download Malaysia Crime iPhone app"/>
+        </a>
+    </div>
+
 {% endblock %}
