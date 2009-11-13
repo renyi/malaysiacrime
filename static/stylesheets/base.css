@@ -7,12 +7,15 @@ body {
 	background: url(../images/bg.gif) repeat-x ;
 }
 
+/* banner
+----------------------------------------------- */
+.banner { text-align: center; }
+
 /* Header
 ----------------------------------------------- */
-.header { padding-top: 5px;}
-.header h1 {
-    margin: 5px 0px;
-}
+.header { margin: 0px 0px; padding-top: 8px; }
+.header-left { text-align: left; }
+.header-right { text-align: right; }
 .report { text-align: right; padding: 3px 0px; }
 .report a {
     color: #F00;
@@ -25,15 +28,9 @@ body {
 /* Nav
 ------------------------------------ */
 #nav {
-	margin: 0px;
-	text-align: right;
-}
-
-#nav ul {
-	text-align: right;
-	margin-left: 73px;
+	margin-top: 2px;
+	text-align: left;
 	font-size: 15px;
-	margin-top: 20px;
 }
 
 #nav ul li {
@@ -251,7 +248,7 @@ body {
 .linelist { color: #555; }
 .linelist em { color: #408000; font-weight: bold; font-style: normal; }
 
-#map_index { width: 950px; height:500px; margin-top: 10px; margin-bottom: 30px; border: 1px solid #CCC; }
+#map_index { width: 950px; height:500px; margin-top: 10px; margin-bottom: 10px; border: 1px solid #CCC; }
 
 /* Comments
 ----------------------------------------------- */

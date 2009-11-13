@@ -56,7 +56,7 @@
     </script>
 {% endblock %}
 
-{% block tab1 %}<li><a class="active"><span>Recent Commented</span></a></li>{% endblock %}
+{% block tab1 %}<li><a class="active"><span>Commented</span></a></li>{% endblock %}
 
 {% block title %}Recent Commented - Malaysia Crime{% endblock %}
 
@@ -69,6 +69,11 @@
         Showing <strong>{{ crimes|length }}</strong> of <strong>{{ crime_total }}</strong> Crime Reports
     </div>
     <div id="map_index" class="span-24 last"></div>
+
+    <div class="banner span-24 last">
+        <a href="http://www.amax.my" target="_blank"><img src="{{ MEDIA_URL }}images/amax.png" alt="amax" title="amax WiMAX"/></a>
+    </div>
+    <hr />
 
     <div class="span-19">
     {% for crime in crimes %}
