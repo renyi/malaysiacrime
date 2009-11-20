@@ -14,10 +14,10 @@
 <body onload="initialize()" onunload="GUnload()">
 <div class="container">
 {% block header %}
-    <div class="header header-left span-6">
+    <div class="span-6" style="padding-top: 8px; text-align: left;">
         <a href="/"><img src="{{ MEDIA_URL }}images/logo.gif" alt="Malaysia Crime Logo" title="Malaysia Crime"/></a>
     </div>
-    <div class="span-17 last" id="nav">
+    <div class="span-14" id="nav">
         <ul>
             {% block tab0 %}<li><a href="{% url main-index %}"><span>Home</span></a></li>{% endblock %}
             {% block tab1 %}<li><a href="{% url main-recent-commented %}"><span>Commented</span></a></li>{% endblock %}
@@ -29,7 +29,7 @@
             {# {% block tab6 %}<li><a href="http://www.amax.my"><span>amax</span></a></li>{% endblock %} #}
         </ul>
     </div>
-    <div class="header header-right span-1 last">
+    <div class="span-4 last" style="padding-top: 18px; text-align: right;">
         <a href="http://www.amax.my" target="_blank"><img src="{{ MEDIA_URL}}images/amaxlogo.png" alt="amax" title="amax WiMAX"/></a>
     </div>
 <div class="clear"></div>

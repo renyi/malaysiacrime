@@ -13,9 +13,6 @@ body {
 
 /* Header
 ----------------------------------------------- */
-.header { margin: 0px 0px; padding-top: 8px; }
-.header-left { text-align: left; }
-.header-right { text-align: right; }
 .report { text-align: right; padding: 3px 0px; }
 .report a {
     color: #F00;
@@ -46,14 +43,14 @@ body {
 	float: left;
 	display: block;
 	cursor: pointer;
-	padding-right: 12px;
+	padding-right: 8px;
 	margin-left: 8px;
 }
 
 #nav ul li a span {
 	height: 40px;
 	display: block;
-	padding-left: 13px;
+	padding-left: 9px;
 	cursor: pointer;
 }
 
@@ -65,7 +62,7 @@ body {
 	display: block;
 	background: url(../images/btn-R-hover.gif) right top no-repeat;
 	cursor: pointer;
-	padding-right: 12px;
+	padding-right: 8px;
 	margin-left: 8px;
 }
 
@@ -73,7 +70,7 @@ body {
 	background:url(../images/btn-L-hover.gif) left top no-repeat;
 	height: 40px;
 	display: block;
-	padding-left: 13px;
+	padding-left: 9px;
 	cursor: pointer;
 }
 
@@ -86,7 +83,7 @@ body {
 	display: block;
 	background: url(../images/btn-R.gif) right top no-repeat;
 	cursor: pointer;
-	padding-right: 12px;
+	padding-right: 8px;
 	margin-left: 8px;
 }
 
@@ -94,7 +91,7 @@ body {
 	background:url(../images/btn-L.gif) left top no-repeat;
 	height: 40px;
 	display: block;
-	padding-left: 13px;
+	padding-left: 9px;
 	cursor: pointer;
 }
 
