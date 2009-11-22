@@ -19,4 +19,6 @@ urlpatterns = patterns('',
     url(r'^icons.js$', direct_to_template, {'template': 'main/icons.js', 'mimetype': 'text/javascript'}, name='main-icons-js'),
     url(r'^robots.txt$', direct_to_template, {'template': 'main/robots.txt', 'mimetype': 'text/plain'}),
     url(r'^sitemap.xml$', sitemap, {'sitemaps': sitemaps}),
+
+    url(r'^about/$', direct_to_template, {'template': 'main/about.html'}, name="main-about"),
 )
