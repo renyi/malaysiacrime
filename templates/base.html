@@ -19,12 +19,13 @@
     </div>
     <div class="span-14" id="nav">
         <ul>
-            {% block tab0 %}<li><a href="{% url main-index %}"><span>Home</span></a></li>{% endblock %}
+            {# {% block tab0 %}<li><a href="{% url main-index %}"><span>Home</span></a></li>{% endblock %} #}
             {% block tab1 %}<li><a href="{% url main-recent-commented %}"><span>Commented</span></a></li>{% endblock %}
             {# {% block tab2 %}<li><a href="{% url main-recent-updated %}"><span>Recent Updated</span></a></li>{% endblock %} #}
             {% block tab3 %}<li><a href="{% url monitor-subscribe %}"><span>Monitor</span></a></li>{% endblock %}
             {% block tab4 %}<li><a href="{% url main-search %}"><span>Search</span></a></li>{% endblock %}
             <li><a href="http://blog.malaysiacrime.com"><span>Blog</span></a></li>
+            {% block tababout %}<li><a href="{% url main-about %}"><span>About</span></a></li>{% endblock %}
             {% block tab5 %}<li><a href="{% url crime-create %}"><span>Report a Crime</span></a></li>{% endblock %}
             {# {% block tab6 %}<li><a href="http://www.amax.my"><span>amax</span></a></li>{% endblock %} #}
         </ul>

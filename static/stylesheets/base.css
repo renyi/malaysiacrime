@@ -25,9 +25,9 @@ body {
 /* Nav
 ------------------------------------ */
 #nav {
-	margin-top: 2px;
-	text-align: left;
+    padding: 0px;
 	font-size: 15px;
+    text-align: right;
 }
 
 #nav ul li {
