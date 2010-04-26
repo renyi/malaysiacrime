@@ -3,7 +3,7 @@
 {% load markup %}
 
 {% block meta %}
-    <meta name="description" content="{{ crime.details|truncatewords:"25" }}">
+    <meta name="description" content="{{ crime.details|markdown:"safe"|truncatewords:"50" }}">
 {% endblock %}
 
 {% block map_script %}
@@ -38,11 +38,6 @@
         {% endif %}
     </div>
     <div id="map_show" class="span-24 last"></div>
-
-    <div class="banner span-24 last">
-        <a href="http://www.amax.my" target="_blank"><img src="{{ MEDIA_URL }}images/amax.png" alt="amax" title="amax WiMAX"/></a>
-    </div>
-    <hr />
 
     <div class="details span-24 last">{{ crime.details|markdown:"safe" }}</div>
 
