@@ -89,6 +89,7 @@ INSTALLED_APPS = (
     'django.contrib.comments',
     'django.contrib.markup',
     'django.contrib.sitemaps',
+    'south',
     'crime',
     'main',
     'monitor',
