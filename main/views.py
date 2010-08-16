@@ -14,7 +14,7 @@ def index(request, template_name='main/index.html'):
     Index page.
     """
     if request.method == 'GET':
-        crimes = Crime.objects.all().order_by('-created_at')[:500]
+        crimes = Crime.objects.filter(is_removed=False).order_by('-created_at')[:500]
     else:
         return HttpResponseRedirect(request.path)
 
@@ -30,7 +30,7 @@ def recent_updated(request, template_name='main/recent_updated.html'):
     Return crime reports sort by recent updated.
     """
     if request.method == 'GET':
-        crimes = Crime.objects.all().order_by('-updated_at')[:200]
+        crimes = Crime.objects.filter(is_removed=False).order_by('-updated_at')[:200]
     else:
         return HttpResponseRedirect(request.path)
 
@@ -54,7 +54,7 @@ def recent_commented(request, template_name='main/recent_commented.html'):
         ids = Comment.objects.all().values_list('object_pk', flat=True).order_by('-submit_date')[:500]
         ids = reduce(lambda l, x: int(x) not in l and l.append(int(x)) or l, ids, [])
         crime_dict = Crime.objects.in_bulk(ids[:200])
-        crimes = [crime_dict[id] for id in ids]
+        crimes = [crime_dict[id] for id in ids if not crime_dict[id].is_removed]
     else:
         return HttpResponseRedirect(request.path)
 

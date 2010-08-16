@@ -24,7 +24,7 @@ def title(request, slug, template_name='crime/show.html'):
     Show a reported crime by it's slug.
     """
     if request.method == 'GET':
-        crime = get_object_or_404(Crime, slug=slug)
+        crime = get_object_or_404(Crime, is_removed=False, slug=slug)
     else:
         return HttpResponseRedirect(request.path)
 

@@ -10,7 +10,7 @@ class LatestEntries(Feed):
     description = "Updates on latest entries in www.malaysiacrime.com."
 
     def items(self):
-        return Crime.objects.order_by('-created_at')[:50]
+        return Crime.objects.filter(is_removed=False).order_by('-created_at')[:50]
 
     def item_geometry(self, item):
         return (item.lng, item.lat)
@@ -33,7 +33,7 @@ class CommentedEntries(Feed):
         ids = Comment.objects.all().values_list('object_pk', flat=True).order_by('-submit_date')[:10]
         ids = reduce(lambda l, x: int(x) not in l and l.append(int(x)) or l, ids, [])
         crime_dict = Crime.objects.in_bulk(ids[:10])
-        crimes = [crime_dict[id] for id in ids]
+        crimes = [crime_dict[id] for id in ids if not crime_dict[id].is_removed]
         return crimes
 
     def item_pubdate(self, item):
@@ -54,7 +54,7 @@ class UpdatedEntries(Feed):
     description = "Updates on recent updated entries in www.malaysiacrime.com."
 
     def items(self):
-        return Crime.objects.order_by('-updated_at')[:10]
+        return Crime.objects.filter(is_removed=False).order_by('-updated_at')[:10]
 
     def item_pubdate(self, item):
         return item.updated_at

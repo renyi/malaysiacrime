@@ -20,7 +20,7 @@ class Command(BaseCommand):
         # Get crime reports in the last 24 hours.
         now = datetime(*args) if args else datetime.now()
         past = now - timedelta(1)
-        latest_crimes = Crime.objects.filter(created_at__gt=past)
+        latest_crimes = Crime.objects.filter(is_removed=False, created_at__gt=past)
 
         # Iterate all monitons. Send emails on crimes that are of interest.
         for m in Moniton.objects.all():
