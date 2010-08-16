@@ -32,7 +32,7 @@ class CrimeCreateForm(forms.ModelForm):
 
     class Meta(object):
         model = Crime
-        exclude = ['slug', 'created_at', 'updated_at']
+        exclude = ['slug', 'is_removed', 'created_at', 'updated_at']
 
 class CrimeUpdateForm(forms.ModelForm):
     """
@@ -58,4 +58,4 @@ class CrimeUpdateForm(forms.ModelForm):
 
     class Meta(object):
         model = Crime
-        exclude = ['slug', 'created_at', 'updated_at']
+        exclude = ['slug',  'is_removed', 'created_at', 'updated_at']
