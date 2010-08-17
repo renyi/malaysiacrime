@@ -41,7 +41,9 @@ def create(request, form_class=CrimeCreateForm, template_name='crime/create.html
     if request.method == 'POST':
         form = form_class(request.POST)
         if form.is_valid():
-            crime = form.save()
+            crime = form.save(commit=False)
+            crime.remote_address = request.META['REMOTE_ADDR']
+            crime.save()
             return redirect(crime)
     elif request.method == 'GET':
         form = form_class()
