@@ -7,7 +7,7 @@ from crime.models import Crime
 from views import *
 
 
-crime_infodict = {'queryset': Crime.objects.all(), 'date_field': 'updated_at'}
+crime_infodict = {'queryset': Crime.objects.filter(is_removed=False), 'date_field': 'updated_at'}
 sitemaps = {'blog': GenericSitemap(crime_infodict)}
 
 urlpatterns = patterns('',
