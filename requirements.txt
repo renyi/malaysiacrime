@@ -1,4 +1,4 @@
-Django==1.2.1
+Django==1.2.2
 Markdown==2.0.3
 South==0.7.2
 ipython==0.10
