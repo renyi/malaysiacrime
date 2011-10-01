@@ -54,6 +54,8 @@
         </div>
     {% endfor %}
 
+	{% comment %}
+
     <hr />
     {% get_comment_form for crime as form %}
     <form action="{% comment_form_target %}" method="post">{% csrf_token %}
@@ -98,4 +100,7 @@
             <input type="submit" name="preview" value="Preview" />
         </div>
     </form>
+
+	{% endcomment %}
+
 {% endblock %}
