@@ -12,7 +12,9 @@
     </div>
 
     <div class="span-24 last" style="margin: 20px 0px; font-size:16px;">
-        Back to <a href="{% url crime-show comment.object_pk %}">{{ comment.content_object.headline }}</a>
+		{% comment %}
+		Back to <a href="{% url crime-show comment.object_pk %}">{{ comment.content_object.headline }}</a>
+		{% endcomment %}
     </div>
 
 {% endblock %}
