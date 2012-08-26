@@ -4,3 +4,4 @@ __data/
 dev.db
 fabfile.py
 settings.py
+/local_settings.py
