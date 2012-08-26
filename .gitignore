@@ -2,6 +2,4 @@
 __data/
 *.pyc
 dev.db
-fabfile.py
-settings.py
 /local_settings.py
