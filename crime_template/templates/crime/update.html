@@ -29,13 +29,13 @@
         // ----- setup map
         function initialize() {
             if (GBrowserIsCompatible()) {
-                map = new GMap2(document.getElementById("map_create"));
-                map.setCenter(
-                    new GLatLng(parseFloat(+"{{ request.POST.lat }}") || 3.0, parseFloat(+"{{ request.POST.lng }}") || 102.2),
-                    parseInt(+"{{ request.POST.zoom }}") || 9);
+                // ----- setup map
+                point = new GLatLng({{ crime.lat }}, {{ crime.lng }}, {{ crime.zoom }});
+                map = new GMap2(document.getElementById("map_update"));
+                map.setCenter(point, {{ crime.zoom }});
                 map.setUIToDefault();
                 map.disableScrollWheelZoom();
-                map.addOverlay(new CrimeMarker(eval("{{ request.POST.icon }}" || "G_DEFAULT_ICON")));
+                map.addOverlay(new CrimeMarker({{ crime.icon }}));
                 setupHandler();
             }
         }
@@ -71,12 +71,10 @@
     </script>
 {% endblock %}
 
-{% block title %}Report a Crime{% endblock %}
-
-{% block tab5 %}<li><a class="active"><span>Report a Crime</span></a></li>{% endblock %}
+{% block title %}Update Crime Report{% endblock %}
 
 {% block content %}
-    <div class="title span-24 last"><h1>Report a Crime to fellow Malaysians</h1></div>
+    <div class="title span-24 last"><h1>Update Crime Report</h1></div>
     <form action="." method="post">{% csrf_token %}
         <div class="label span-4">Headline :</div>
         <div class="field span-20 last">
@@ -97,16 +95,16 @@
         </div>
 
         <div class="label span-4">&nbsp;</div>
-        <div id="map_create" class="span-20 last"></div>
+        <div id="map_update" class="span-20 last"></div>
 
 		<div class="span-3 last" id="nav-img">
 			<ul>
-				<li id="id_icon_default"><img src="{{ MEDIA_URL }}images/icons/marker.png"></li>
-				<li id="id_icon_rempit"><img src="{{ MEDIA_URL }}images/icons/rempit/image.png"></li>
-				<li id="id_icon_gun"><img src="{{ MEDIA_URL }}images/icons/gun/image.png"></li>
-				<li id="id_icon_skull"><img src="{{ MEDIA_URL }}images/icons/skull/image.png"></li>
-				<li id="id_icon_parang"><img src="{{ MEDIA_URL }}images/icons/parang/image.png"></li>
-				<li id="id_icon_rape"><img src="{{ MEDIA_URL }}images/icons/rape/image.png"></li>
+				<li id="id_icon_default"><img src="{{ STATIC_URL }}images/icons/marker.png"></li>
+				<li id="id_icon_rempit"><img src="{{ STATIC_URL }}images/icons/rempit/image.png"></li>
+				<li id="id_icon_gun"><img src="{{ STATIC_URL }}images/icons/gun/image.png"></li>
+				<li id="id_icon_skull"><img src="{{ STATIC_URL }}images/icons/skull/image.png"></li>
+				<li id="id_icon_parang"><img src="{{ STATIC_URL }}images/icons/parang/image.png"></li>
+				<li id="id_icon_rape"><img src="{{ STATIC_URL }}images/icons/rape/image.png"></li>
 			</ul>
 		</div>
 
@@ -135,17 +133,12 @@
         <div class="label span-4">Password :</div>
         <div class="field span-20 last">
             {% if form.password.errors %}<span class="errors">{{ form.password.errors|join:" // " }}</span><br />{% endif %}
-            {{ form.password }}&nbsp;&nbsp;&nbsp;<em>This is used only if you want to edit the post in the future.</em>
-        </div>
-        <div class="label span-4">Confirm Password :</div>
-        <div class="field span-20 last">
-            {% if form.password2.errors %}<span class="errors">{{ form.password2.errors|join:" // " }}</span><br />{% endif %}
-            {{ form.password2 }}&nbsp;&nbsp;&nbsp;<em>Type the password again for confirmation.</em>
+            {{ form.password }} <em>You must know the &quot;password&quot; to update this report.</em>
         </div>
 
         <div class="label span-4">&nbsp;</div>
         <div class="field span-20 last">
-            <input type="submit" value="Report It">&nbsp;&nbsp;&nbsp;&nbsp;<a href="{% url main-index %}">Cancel</a>
+            <input type="submit" value="Update this Report">&nbsp;&nbsp;&nbsp;&nbsp;<a href="{{ crime.get_absolute_url }}">Cancel</a>
         </div>
     </form>
 {% endblock %}

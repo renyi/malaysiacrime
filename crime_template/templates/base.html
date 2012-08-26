@@ -6,7 +6,7 @@
     <meta name="verify-v1" content="9tSmkqhEItR2vb4NQ9111/akEBcEgiodn23Zbn8fLI0=" />
     {% block meta %}{% endblock %}
     <title>{% block title %}{% endblock %}</title>
-    <link href="{{ MEDIA_URL }}stylesheets/base.css" rel="stylesheet" type="text/css" media="screen, projection"/>
+    <link href="{{ STATIC_URL }}stylesheets/base.css" rel="stylesheet" type="text/css" media="screen, projection"/>
     <!--[if IE]><link href="/stylesheets/blueprint/ie.css" rel="stylesheet" type="text/css" media="screen, projection"/><![endif]-->
     <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAnJLlw5vKfNQWDanaSWeKqRTZlE7kmkEf407ZrC6woqvldhRE3hQPc-s73V-l62omjS2VoIkPROnnog&amp;sensor=false" type="text/javascript"></script>
     {% block map_script %}{% endblock %}
@@ -15,7 +15,7 @@
 <div class="container">
 {% block header %}
     <div class="span-6" style="padding-top: 8px; text-align: left;">
-        <a href="/"><img src="{{ MEDIA_URL }}images/logo.gif" alt="Malaysia Crime Logo" title="Malaysia Crime"/></a>
+        <a href="/"><img src="{{ STATIC_URL }}images/logo.gif" alt="Malaysia Crime Logo" title="Malaysia Crime"/></a>
     </div>
     <div class="span-14" id="nav">
         <ul>
