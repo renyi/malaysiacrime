@@ -1,7 +1,7 @@
 from django.conf.urls.defaults import *
 
 from feeders import *
-
+# from django.contrib.syndication.views import Feed
 
 feeds = {
     'latest': LatestEntries,
@@ -10,5 +10,5 @@ feeds = {
 }
 
 urlpatterns = patterns('',
-    url(r'(?P<url>.*).xml$', 'django.contrib.syndication.views.feed', {'feed_dict': feeds}, name='feeds-latest'),
+    url(r'(?P<url>.*).xml$', 'django.contrib.syndication.views.Feed', {'feed_dict': feeds}, name='feeds-latest'),
 )
