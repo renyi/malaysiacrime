@@ -1,0 +1,24 @@
+Hi,
+
+There are crimes reported in your monitored area.
+
+{% for crime in crimes %}
+* {{ crime.headline }}
+  {{ crime.location }} | {{ crime.date|date:"d M Y" }}
+  http://www.malaysiacrime.com{{ crime.get_absolute_url }}
+{% endfor %}
+
+cheers,
+Malaysia Crime
+
+http://www.malaysiacrime.com
+http://blog.malaysiacrime.com
+
+
+* You are receiving this email because you have subscribed to Malaysia Crime Monitor service.
+
+You can view your subscription information using the link below:
+http://www.malaysiacrime.com{% url monitor-info uuid %}
+
+You can, at anytime, unsubscribe using the link below:
+http://www.malaysiacrime.com{%url monitor-unsubscribe uuid %}

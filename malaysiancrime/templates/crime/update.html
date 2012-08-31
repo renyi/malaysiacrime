@@ -1,0 +1,144 @@
+{% extends "base.html" %}
+
+{% block map_script %}
+    <script src="{% url main-icons-js %}" type="text/javascript"></script>
+    <script type="text/javascript">
+        var map = null;
+
+        // ----- define the GOverlay that show marker in the middle of map
+        function CrimeMarker(icon) { this.icon_ = icon; }
+        CrimeMarker.prototype = new GOverlay();
+        CrimeMarker.prototype.initialize = function(map) {
+            var div = document.createElement("div");
+            div.style.position = "absolute";
+            div.innerHTML = ""
+                + "<img style='position:absolute;' src='" + this.icon_.shadow + "'>"
+                + "<img style='position:absolute;' src='" + this.icon_.image + "'>";
+            this.div_ = div;
+            this.map_ = map;
+            map.getPane(G_MAP_MAP_PANE).appendChild(this.div_);
+        }
+        CrimeMarker.prototype.remove = function() { this.div_.parentNode.removeChild(this.div_); }
+        CrimeMarker.prototype.copy = function() { return new CrimeMarker(this.icon_); }
+        CrimeMarker.prototype.redraw = function(force) {
+            c = this.map_.fromLatLngToDivPixel(this.map_.getCenter());
+            this.div_.style.top = c.y - this.icon_.iconAnchor.y + "px";
+            this.div_.style.left = c.x - this.icon_.iconAnchor.x + "px";
+        }
+
+        // ----- setup map
+        function initialize() {
+            if (GBrowserIsCompatible()) {
+                // ----- setup map
+                point = new GLatLng({{ crime.lat }}, {{ crime.lng }}, {{ crime.zoom }});
+                map = new GMap2(document.getElementById("map_update"));
+                map.setCenter(point, {{ crime.zoom }});
+                map.setUIToDefault();
+                map.disableScrollWheelZoom();
+                map.addOverlay(new CrimeMarker({{ crime.icon }}));
+                setupHandler();
+            }
+        }
+
+        // ----- setup event handler
+        function handleIcon(name, icon) {
+            map.clearOverlays();
+            map.addOverlay(new CrimeMarker(icon));
+            document.getElementById('id_icon').value = name;
+        }
+        function setupHandler() {
+            // handle icon
+            document.getElementById("id_icon").value = "{{ request.POST.icon }}" || "G_DEFAULT_ICON";
+            document.getElementById('id_icon_default').onclick = function() { handleIcon("G_DEFAULT_ICON", G_DEFAULT_ICON); }
+            document.getElementById('id_icon_rempit').onclick = function() { handleIcon("REMPIT_ICON", REMPIT_ICON); }
+            document.getElementById('id_icon_gun').onclick = function() { handleIcon("GUN_ICON", GUN_ICON); }
+            document.getElementById('id_icon_skull').onclick = function() { handleIcon("SKULL_ICON", SKULL_ICON); }
+            document.getElementById('id_icon_parang').onclick = function() { handleIcon("PARANG_ICON", PARANG_ICON); }
+            document.getElementById('id_icon_rape').onclick = function() { handleIcon("RAPE_ICON", RAPE_ICON); }
+
+            // handle lat and lng
+            document.getElementById("id_lat").value = map.getCenter().lat();
+            document.getElementById("id_lng").value = map.getCenter().lng();
+            GEvent.addListener(map, "moveend", function() {
+                document.getElementById("id_lat").value = map.getCenter().lat();
+                document.getElementById("id_lng").value = map.getCenter().lng();
+            });
+            document.getElementById("id_zoom").value = map.getZoom();
+            GEvent.addListener(map, "zoomend", function() {
+                document.getElementById("id_zoom").value = map.getZoom();
+            });
+        }
+    </script>
+{% endblock %}
+
+{% block title %}Update Crime Report{% endblock %}
+
+{% block content %}
+    <div class="title span-24 last"><h1>Update Crime Report</h1></div>
+    <form action="." method="post">{% csrf_token %}
+        <div class="label span-4">Headline :</div>
+        <div class="field span-20 last">
+            {% if form.headline.errors %}<span class="errors">{{ form.headline.errors|join:" // " }}</span><br />{% endif %}
+            {{ form.headline }}<br /><em>Provide a title for your entry. In the case of crimes reported in the media, please use the original headline.</em>
+        </div>
+
+        <div class="label span-4">Date :</div>
+        <div class="field span-20 last">
+            {% if form.date.errors %}<span class="errors">{{ form.date.errors|join:" // " }}</span><br />{% endif %}
+            {{ form.date }}<br /> <em>Date of the crime. Eg, <strong>21 Mar 2009</strong> or <strong>2009-03-21</strong>.</em>
+        </div>
+
+        <div class="label span-4">Location :</div>
+        <div class="field span-20 last">
+            {% if form.location.errors %}<span class="errors">{{ form.location.errors|join:" // " }}</span><br />{% endif %}
+            {{ form.location }}<br /><em>What is the location of this crime? <strong>Eg. Jalan 9/1 Bandar Puteri, Puchong, Selangor</strong>.</em>
+        </div>
+
+        <div class="label span-4">&nbsp;</div>
+        <div id="map_update" class="span-20 last"></div>
+
+		<div class="span-3 last" id="nav-img">
+			<ul>
+				<li id="id_icon_default"><img src="{{ STATIC_URL }}images/icons/marker.png"></li>
+				<li id="id_icon_rempit"><img src="{{ STATIC_URL }}images/icons/rempit/image.png"></li>
+				<li id="id_icon_gun"><img src="{{ STATIC_URL }}images/icons/gun/image.png"></li>
+				<li id="id_icon_skull"><img src="{{ STATIC_URL }}images/icons/skull/image.png"></li>
+				<li id="id_icon_parang"><img src="{{ STATIC_URL }}images/icons/parang/image.png"></li>
+				<li id="id_icon_rape"><img src="{{ STATIC_URL }}images/icons/rape/image.png"></li>
+			</ul>
+		</div>
+
+        <div class="span-24 last">{{ form.icon }} {{ form.lat }} {{ form.lng }} {{ form.zoom }}</div>
+
+        <div class="label span-4">Details :</div>
+        <div class="field span-20 last">
+            <em>
+                Please describe the crime in details.<br />{{ form.details }}<br />
+                You can use the following to format your post:<br />
+                <span style="font-family:courier;">
+                &nbsp;&nbsp;_make the text italic_<br />
+                &nbsp;&nbsp;__make the text bold__<br />
+                &nbsp;&nbsp;![picture name](http://url_address_of_pic/pic.jpg/)<br />
+                &nbsp;&nbsp;[link name](http://url_address_of_link/link.html/)
+                </span>
+            </em>
+        </div>
+
+        <div class="label span-4">Your Name :</div>
+        <div class="field span-20 last">
+            {% if form.author.errors %}<span class="errors">{{ form.author.errors|join:" // " }}</span><br />{% endif %}
+            {{ form.author }}&nbsp;&nbsp;&nbsp;<em>Required. Put fake name if you want.</em>
+        </div>
+
+        <div class="label span-4">Password :</div>
+        <div class="field span-20 last">
+            {% if form.password.errors %}<span class="errors">{{ form.password.errors|join:" // " }}</span><br />{% endif %}
+            {{ form.password }} <em>You must know the &quot;password&quot; to update this report.</em>
+        </div>
+
+        <div class="label span-4">&nbsp;</div>
+        <div class="field span-20 last">
+            <input type="submit" value="Update this Report">&nbsp;&nbsp;&nbsp;&nbsp;<a href="{{ crime.get_absolute_url }}">Cancel</a>
+        </div>
+    </form>
+{% endblock %}

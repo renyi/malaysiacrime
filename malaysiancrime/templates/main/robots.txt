@@ -1,0 +1,7 @@
+User-Agent: *
+Disallow: /crime/create/
+Disallow: /crime/update/
+Disallow: /monitor/subscribe/*
+Disallow: /monitor/info/*
+Disallow: /monitor/unsubscribe/*
+Allow: /

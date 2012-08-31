@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block map_script %}
+    <script src="{% url main-icons-js %}" type="text/javascript"></script>
+    <script type="text/javascript">
+        var map = null;
+
+        // ----- setup map
+        function initialize() {
+            if (GBrowserIsCompatible()) {
+                map = new GMap2(document.getElementById("map_create"));
+                map.setCenter(
+                    new GLatLng(parseFloat(+"{{ request.POST.lat }}") || 3.0, parseFloat(+"{{ request.POST.lng }}") || 102.2),
+                    parseInt(+"{{ request.POST.zoom }}") || 9);
+                map.setUIToDefault();
+                map.disableScrollWheelZoom();
+                setupHandler();
+            }
+        }
+
+        function setupHandler() {
+            // handle lat and lng
+            document.getElementById("id_lat").value = map.getCenter().lat();
+            document.getElementById("id_lng").value = map.getCenter().lng();
+            var ne = map.getBounds().getNorthEast();
+            var sw = map.getBounds().getSouthWest();
+            document.getElementById("id_top").value = ne.lat();
+            document.getElementById("id_right").value = ne.lng();
+            document.getElementById("id_bottom").value = sw.lat();
+            document.getElementById("id_left").value = sw.lng();
+            GEvent.addListener(map, "moveend", function() {
+                document.getElementById("id_lat").value = map.getCenter().lat();
+                document.getElementById("id_lng").value = map.getCenter().lng();
+                var ne = map.getBounds().getNorthEast();
+                var sw = map.getBounds().getSouthWest();
+                document.getElementById("id_top").value = ne.lat();
+                document.getElementById("id_right").value = ne.lng();
+                document.getElementById("id_bottom").value = sw.lat();
+                document.getElementById("id_left").value = sw.lng();
+            });
+
+            document.getElementById("id_zoom").value = map.getZoom();
+            GEvent.addListener(map, "zoomend", function() {
+                document.getElementById("id_zoom").value = map.getZoom();
+                var ne = map.getBounds().getNorthEast();
+                var sw = map.getBounds().getSouthWest();
+                document.getElementById("id_top").value = ne.lat();
+                document.getElementById("id_right").value = ne.lng();
+                document.getElementById("id_bottom").value = sw.lat();
+                document.getElementById("id_left").value = sw.lng();
+            });
+        }
+    </script>
+{% endblock %}
+
+{% block title %}Monitor Service{% endblock %}
+
+{% block tab3 %}<li><a class="active"><span>Monitor</span></a></li>{% endblock %}
+
+{% block content %}
+    <div class="title span-24 last"><h1>Subscribe to Monitor Service</h1></div>
+    <div class="subtitle span-24 last">
+        <p>The Monitor service helps you to monitor crimes in areas of your interest. If a
+            crime happened in that area, our system will send you an email notifying you about the crime.</p>
+        <p>To subscribe to the Monitor service, you only have to <strong>choose the area</strong> you would like to monitor on the map.
+            And input your <strong>email address</strong> below. You can subscribe to as many areas as you want using the same email.</p>
+        <p><em>NOTE: We will only send you a maximum of ONE email a day. No email will be sent if no crime happen in your area of interest.</em></p>
+    </div>
+    <form action="." method="post">{% csrf_token %}
+        <div class="label span-4">Area to Monitor :</div>
+        <div id="map_create" class="span-20 last"></div>
+
+        <div class="span-24 last">{{ form.lat }} {{ form.lng }} {{ form.top }} {{ form.right }} {{ form.bottom }} {{ form.left }} {{ form.zoom }}</div>
+
+        <div class="label span-4">Email :</div>
+        <div class="field span-20 last">
+            {% if form.email.errors %}<span class="errors">{{ form.email.errors|join:" // " }}</span><br />{% endif %}
+            {{ form.email }}&nbsp;&nbsp;&nbsp;<em>Required. Notification will be sent to this email.</em>
+        </div>
+
+        <div class="label span-4">&nbsp;</div>
+        <div class="field span-20 last">
+            <input type="submit" value="Subscribe">&nbsp;&nbsp;&nbsp;&nbsp;<a href="{% url main-index %}">Cancel</a>
+        </div>
+    </form>
+{% endblock %}

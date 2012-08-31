@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% load comments %}
+
+{% block meta %}
+    <meta name="description" content="Recent Updated Malaysia Crime News on Google Map">
+{% endblock %}
+
+{% block map_script %}
+    <script src="http://gmaps-utility-library.googlecode.com/svn/trunk/markermanager/1.1/src/markermanager_packed.js" type="text/javascript"></script>
+    <script src="{% url main-icons-js %}" type="text/javascript"></script>
+    <script type="text/javascript">
+    //<![CDATA[
+        var map = null;
+        var mgr = null;
+
+        // ----- initialize the map
+        function initialize() {
+            if (GBrowserIsCompatible()) {
+                map = new GMap2(document.getElementById("map_index"));
+                map.setCenter(new GLatLng(4.0, 102.2), 7);
+                map.setUIToDefault();
+                map.disableScrollWheelZoom();
+                window.setTimeout(setupMarkers, 0);
+            }
+        }
+
+        // ----- create markers
+        function createMarker(text, lat, lng, icon) {
+            marker = new GMarker(new GLatLng(lat, lng), icon);
+            marker.bindInfoWindow(text);
+            return marker;
+        }
+
+        // ----- setup markers
+        function setupMarkers() {
+            var batch = [];
+            {% for crime in crimes reversed %}
+                {% get_comment_count for crime as comment_count %}
+                batch.push(createMarker(
+                    "<span class='headlineinfo'>"
+                    + "<a href='{{ crime.get_absolute_url }}'>{{crime.headline}}</a></span><br/>"
+                    + "<span class='sublineinfo'>{{ crime.date|timesince:now }} ago at <strong>{{ crime.location }}</strong><br />"
+                    {% if comment_count %}
+                        + "// {{ comment_count }} comment{{ comment_count|pluralize }}"
+                    {% endif %}
+                    + "</span>",
+                    {{ crime.lat }}, {{ crime.lng }}, {{ crime.icon }}))
+            {% endfor %}
+
+            mgr = new MarkerManager(map);
+            mgr.addMarkers(batch, 0);
+            mgr.refresh();
+        }
+    //]]>
+    </script>
+{% endblock %}
+
+{% block tab2 %}<li><a class="active"><span>Recent Updated</span></a></li>{% endblock %}
+
+{% block title %}Recent Updated - Malaysia Crime{% endblock %}
+
+{% block content %}
+    <div class="title span-18">
+        <h2>Recent Updated Malaysia Crimes</h2>
+    </div>
+
+    <div class="stats span-6 last">
+        Showing <strong>{{ crimes.count }}</strong> of <strong>{{ crime_total }}</strong> Crime Reports
+    </div>
+    <div id="map_index" class="span-24 last"></div>
+
+    <div class="span-24 last">
+    {% for crime in crimes %}
+        {% get_comment_count for crime as comment_count %}
+        <span class="linelist">
+            <h2><a href="{{ crime.get_absolute_url }}">{{ crime.headline }}</a></h2>
+            <strong>{{ crime.date|timesince:now }}</strong> ago at
+            <em>{{ crime.location }}</em>
+            reported by <strong>{{ crime.author }}</strong>
+            {% if comment_count %}
+                // {{ comment_count }} comment{{ comment_count|pluralize }}
+            {% endif %}
+        </span><br/><br/>
+    {% endfor %}
+    </div>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Monitor Service{% endblock %}
+
+{% block content %}
+    <div class="title span-24 last"><h1>Unsubscribe Your Monitor Subscription</h1></div>
+
+    <div class="subtitle span-24">
+        <p>Are you sure you want to unsubscribe <strong>{{ moniton.email }}</strong></p>
+        <form action="." method="post" accept-charset="utf-8">{% csrf_token %}
+            <p><input type="submit" value="Unsubscribe"></p>
+        </form>
+    </div>
+{% endblock %}

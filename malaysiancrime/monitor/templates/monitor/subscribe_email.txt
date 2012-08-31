@@ -1,0 +1,13 @@
+Thank you for subscribing to Malaysia Crime Monitor service.
+
+You can view your subscription information using the link below:
+http://www.malaysiacrime.com{% url monitor-info uuid %}
+
+You can, at anytime, unsubscribe using the link below:
+http://www.malaysiacrime.com{%url monitor-unsubscribe uuid %}
+
+cheers,
+Malaysia Crime
+
+http://www.malaysiacrime.com
+http://blog.malaysiacrime.com
