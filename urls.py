@@ -1,8 +1,7 @@
-from django.conf.urls.defaults import *
 from django.conf import settings
-
-# Uncomment the next two lines to enable the admin:
+from django.conf.urls.defaults import *
 from django.contrib import admin
+
 admin.autodiscover()
 
 urlpatterns = patterns('',
@@ -11,16 +10,16 @@ urlpatterns = patterns('',
     (r'^monitor/', include('monitor.urls')),
     (r'^feeds/', include('feeds.urls')),
     (r'^comments/', include('django.contrib.comments.urls')),
-
-
-    # Uncomment the admin/doc line below and add 'django.contrib.admindocs'
-    # to INSTALLED_APPS to enable admin documentation:
-    # (r'^admin/doc/', include('django.contrib.admindocs.urls')),
-
-    # Uncomment the next line to enable the admin:
     (r'^admin/', include(admin.site.urls)),
 )
 
+# Default robots.txt
+if not settings.DEBUG:
+    urlpatterns += patterns('',
+        url(r'^robots\.txt$', TextPlainView.as_view(template_name='robots.txt')),
+    )
+
+# Media and Static files for development
 if settings.DEBUG:
     # Static files
     from django.contrib.staticfiles.urls import staticfiles_urlpatterns

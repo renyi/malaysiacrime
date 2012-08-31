@@ -1,4 +1,5 @@
-# Django settings for malaysiacrime project.
+DEBUG = True
+TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
     ('Kegan Gan', 'kegan@kegan.info'),
@@ -18,13 +19,6 @@ USE_L10N                        = False
 INTERNAL_IPS                    = ("127.0.0.1",)
 SESSION_ENGINE                  = 'django.contrib.sessions.backends.cached_db'
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
-
-DATABASE_ENGINE   = ''
-DATABASE_NAME     = ''
-DATABASE_USER     = ''
-DATABASE_PASSWORD = ''
-DATABASE_HOST     = ''
-DATABASE_PORT     = ''
 
 TIME_INPUT_FORMATS = (
     '%I:%M %p', '%H:%M:%S', '%H:%M'
@@ -54,20 +48,9 @@ PROJECT_DIR     = os.path.dirname(__file__)
 ROOT_URLCONF                = '%s.urls' % PROJECT_DIRNAME
 CACHE_MIDDLEWARE_KEY_PREFIX = '%s' % PROJECT_DIRNAME
 CACHE_MIDDLEWARE_ALIAS      = '%s' % PROJECT_DIRNAME
-# CSRF_COOKIE_DOMAIN          = ".redbox.com.my"
 CSRF_COOKIE_NAME            = '%scsrftoken' % PROJECT_DIRNAME
 LANGUAGE_COOKIE_NAME        = '%slanguage' % PROJECT_DIRNAME
 SESSION_COOKIE_NAME         = '%ssession' % PROJECT_DIRNAME
-
-# CACHES = {
-#     'default': {
-#         'BACKEND': 'django.core.cache.backends.memcached.PyLibMCCache',
-#         'LOCATION': [
-#             '127.0.0.1:11211',
-#         ],
-#         'KEY_PREFIX': '%s' % PROJECT_DIRNAME,
-#     }
-# }
 
 STATIC_DIR  = '/opt/static/'
 STATIC_URL  = '/static/'
@@ -75,15 +58,11 @@ STATIC_ROOT = '%sstatic/' % STATIC_DIR
 MEDIA_ROOT  = '%smedia/%s/' % (STATIC_DIR, PROJECT_DIRNAME)
 MEDIA_URL   = '/media/%s/' % PROJECT_DIRNAME
 
-# Make this unique, and don't share it with anybody.
-# http://www.miniwebtool.com/django-secret-key-generator/
-SECRET_KEY = '----i-am-not-telling-you---'
-
 # List of callables that know how to import templates from various sources.
-TEMPLATE_LOADERS = (
-    "django.template.loaders.filesystem.Loader",
-    "django.template.loaders.app_directories.Loader",
-)
+# TEMPLATE_LOADERS = (
+#     "django.template.loaders.filesystem.Loader",
+#     "django.template.loaders.app_directories.Loader",
+# )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     "django.contrib.auth.context_processors.auth",
@@ -98,9 +77,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 
 MIDDLEWARE_CLASSES = (
     'malaysiacrime.SetRemoteAddrFromForwardedFor',
-    'django.middleware.cache.UpdateCacheMiddleware',
     "django.middleware.common.CommonMiddleware",
-    'django.middleware.cache.FetchFromCacheMiddleware',
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     # "django.middleware.locale.LocaleMiddleware",
@@ -113,11 +90,11 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'malaysiacrime.urls'
 
 TEMPLATE_DIRS = (
-    # os.path.join(PROJECT_DIR, 'templates')
+    os.path.join(PROJECT_DIR, 'templates')
 )
 
 INSTALLED_APPS = [
-    "crime_template",
+    # "crime_template",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -129,18 +106,17 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'django.contrib.comments',
     'django.contrib.markup',
-    'django.contrib.sitemaps',
 
     # Django apps
     'south',
-    "mailer",
+    # "mailer",
     # "mptt",
     # "tastypie",
     # "debug_toolbar",
     # "django_extensions",
     # "compressor",
 
-    # Malaysian Crime
+    # Malaysian Crime,
     'crime',
     'main',
     'monitor',
@@ -149,38 +125,6 @@ INSTALLED_APPS = [
 # CACHE Middleware
 CACHE_MIDDLEWARE_ANONYMOUS_ONLY = True
 CACHE_MIDDLEWARE_SECONDS        = 600
-
-# Email
-EMAIL_BACKEND       = 'mailer.backend.DbBackend'
-EMAIL_HOST          = 'smtp.gmail.com'
-EMAIL_HOST_USER     = ''
-EMAIL_HOST_PASSWORD = ''
-EMAIL_PORT          = 587
-EMAIL_USE_TLS       = True
-
-# Django compressor
-# COMPRESS_ENABLED     = True
-# COMPRESS_CSS_FILTERS = [
-#     'compressor.filters.css_default.CssAbsoluteFilter',
-#     'compressor.filters.cssmin.CSSMinFilter',
-# ]
-
-# COMPRESS_JS_FILTERS = [
-#     'compressor.filters.jsmin.JSMinFilter',
-# ]
-
-# Celery
-# BROKER_HOST     = "localhost"
-# BROKER_PORT     = 5672
-# BROKER_USER     = ""
-# BROKER_PASSWORD = ""
-# BROKER_VHOST    = ""
-
-# CELERY_IMPORTS = []
-
-# import djcelery
-# djcelery.setup_loader()
-# INSTALLED_APPS += ["djcelery",]
 
 try:
     # Developers settings.
