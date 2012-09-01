@@ -1,23 +1,17 @@
 from django.conf import settings
-from django.conf.urls.defaults import *
+from django.conf.urls import patterns, include, url
 from django.contrib import admin
 
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    (r'^', include('main.urls')),
-    (r'^crime/', include('crime.urls')),
-    (r'^monitor/', include('monitor.urls')),
-    (r'^feeds/', include('feeds.urls')),
+    (r'', include('malaysiancrime.main.urls')),
+    (r'^crime/', include('malaysiancrime.crime.urls')),
+    (r'^monitor/', include('malaysiancrime.monitor.urls')),
+    (r'^feeds/', include('malaysiancrime.feeds.urls')),
     (r'^comments/', include('django.contrib.comments.urls')),
     (r'^admin/', include(admin.site.urls)),
 )
-
-# Default robots.txt
-if not settings.DEBUG:
-    urlpatterns += patterns('',
-        url(r'^robots\.txt$', TextPlainView.as_view(template_name='robots.txt')),
-    )
 
 # Media and Static files for development
 if settings.DEBUG:

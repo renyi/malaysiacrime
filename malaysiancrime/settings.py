@@ -7,9 +7,6 @@ ADMINS = (
 )
 MANAGERS = ADMINS
 
-DEBUG = False
-TEMPLATE_DEBUG = False
-
 SITE_ID                         = 1
 USE_TZ                          = True
 TIME_ZONE                       = 'Asia/Kuala_Lumpur'
@@ -19,6 +16,7 @@ USE_L10N                        = False
 INTERNAL_IPS                    = ("127.0.0.1",)
 SESSION_ENGINE                  = 'django.contrib.sessions.backends.cached_db'
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+WSGI_APPLICATION                = 'malaysiancrime.wsgi.application'
 
 TIME_INPUT_FORMATS = (
     '%I:%M %p', '%H:%M:%S', '%H:%M'
@@ -58,11 +56,15 @@ STATIC_ROOT = '%sstatic/' % STATIC_DIR
 MEDIA_ROOT  = '%smedia/%s/' % (STATIC_DIR, PROJECT_DIRNAME)
 MEDIA_URL   = '/media/%s/' % PROJECT_DIRNAME
 
-# List of callables that know how to import templates from various sources.
-# TEMPLATE_LOADERS = (
-#     "django.template.loaders.filesystem.Loader",
-#     "django.template.loaders.app_directories.Loader",
-# )
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+)
+
+TEMPLATE_LOADERS = (
+    'django.template.loaders.filesystem.Loader',
+    'django.template.loaders.app_directories.Loader',
+)
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     "django.contrib.auth.context_processors.auth",
@@ -76,7 +78,6 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 )
 
 MIDDLEWARE_CLASSES = (
-    'malaysiacrime.SetRemoteAddrFromForwardedFor',
     "django.middleware.common.CommonMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -87,20 +88,20 @@ MIDDLEWARE_CLASSES = (
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'malaysiacrime.urls'
+ROOT_URLCONF = 'malaysiancrime.urls'
 
 TEMPLATE_DIRS = (
-    os.path.join(PROJECT_DIR, 'templates')
+    # os.path.join(PROJECT_DIR, 'templates')
 )
 
 INSTALLED_APPS = [
-    # "crime_template",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.redirects",
     "django.contrib.sessions",
     "django.contrib.sites",
+    'django.contrib.messages',
     "django.contrib.sitemaps",
     "django.contrib.staticfiles",
     'django.contrib.humanize',
@@ -110,25 +111,27 @@ INSTALLED_APPS = [
     # Django apps
     'south',
     # "mailer",
-    # "mptt",
+    # "compressor",
     # "tastypie",
     # "debug_toolbar",
     # "django_extensions",
-    # "compressor",
 
     # Malaysian Crime,
-    'crime',
-    'main',
-    'monitor',
+    'malaysiancrime',
+    'malaysiancrime.crime',
+    'malaysiancrime.main',
+    'malaysiancrime.monitor',
 ]
 
 # CACHE Middleware
 CACHE_MIDDLEWARE_ANONYMOUS_ONLY = True
 CACHE_MIDDLEWARE_SECONDS        = 600
 
+from local_settings import *
+
 try:
-    # Developers settings.
-    from local_settings import *
+    # Developers settings
+    pass
 except ImportError:
     pass
 
