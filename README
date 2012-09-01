@@ -1,0 +1,42 @@
+Introduction
+------------
+
+As promised, a fork of Malaysian Crime.
+
+
+Changelog
+---------
+
+1/9/2012
+
+- Changed directory structure as recommended by Django 1.4
+
+
+24/8/2012
+
+- Django 1.4 compatible
+
+- Removed ipython as requirement
+
+
+
+To setup
+--------
+
+1. copy /dev/local_settings.py to /local_settings.py
+
+2. python manage.py syncdb && python manage.py migrate
+
+
+
+To run
+------
+
+1. python manage.py runserver
+
+
+
+Notes
+-----
+
+This fork is only tested on Django 1.4+.

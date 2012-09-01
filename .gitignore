@@ -2,4 +2,4 @@
 __data/
 *.pyc
 dev.db
-/local_settings.py
+local_settings.py
